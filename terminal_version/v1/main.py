@@ -13,7 +13,7 @@ Algorithm:
 
 '''Import from character_base.json, '''
 
-from terminal_version.helper_functions import load_character_base, find_best_question, user_response, remove_invalid_char, output_char
+from terminal_version.v1.helper_functions import load_character_base, find_best_question, user_response, remove_invalid_char, output_char
 import numpy as np
 
 X = load_character_base()
