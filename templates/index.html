@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MB Akinator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='game.js') }}" defer></script>
+</head>
+<body>
+    <main id="game" data-answer-url="{{ url_for('answer') }}">
+        <h1 id="question" aria-live="polite" aria-atomic="true">{{ game.message }}</h1>
+        <div id="answers" class="answers"{% if game.done %} hidden{% endif %}>
+            <button type="button" data-answer="1">Yes</button>
+            <button type="button" data-answer="0">No</button>
+        </div>
+        <a id="restart" href="{{ url_for('index') }}"{% if not game.done %} hidden{% endif %}>Play again</a>
+        <p id="error" role="alert" hidden></p>
+        <noscript>Please enable JavaScript to use the Yes and No buttons.</noscript>
+    </main>
+    <footer>
+        <p id="remaining" aria-live="polite">({{ game.remaining }} {{ 'character' if game.remaining == 1 else 'characters' }} remaining)</p>
+    </footer>
+    <script id="initial-game" type="application/json">{{ game | tojson }}</script>
+</body>
+</html>
